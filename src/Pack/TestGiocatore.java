@@ -1,5 +1,6 @@
 package Pack;
 import java.util.Scanner;
+import java.util.Random;
 public class TestGiocatore {
     public static void main(String[]args){
         Scanner in = new Scanner(System.in);
@@ -15,6 +16,7 @@ public class TestGiocatore {
         boolean isCapitano =false;
         boolean error;
         int gol;
+        Random r= new Random(32198);
         Giocatore[] g = new Giocatore[1000];
         do{
             System.out.println("Scegli una tra queste opzioni:" +
@@ -83,6 +85,28 @@ public class TestGiocatore {
                     giocatoreInModifica=TrovaGiocatore(g, nGiocatori, modGiocatore);
                     CancellaGiocatore(giocatoreInModifica, g, nGiocatori);
                     System.out.println("Giocatore cancellato");
+                    nGiocatori--;
+                    break;
+                case 5:
+                    for(int i=0;i<nGiocatori;i++){
+                        if(g[i].getGol()>5)
+                            System.out.println(VisualizzaGiocatori(g, i));
+                    }
+                    break;
+                case 6:
+                    for(int i=0;i<nGiocatori;i++){
+                        if(g[i].getCapitano()==true)
+                            System.out.println(g[i].getNome());
+                    }
+                    break;
+                case 7:
+                    r=r.nextInt(nGiocatori)
+                    if(presenzaCapitano) {
+                        System.out.println("É già presente un capitano");
+                        break;
+                    }
+                    else
+                        AssegnaCapitano(g, nGiocatori);
             }
         }while(active);
     }
@@ -110,5 +134,8 @@ public class TestGiocatore {
         for(int i=giocatoreDaCancellare;i<nGiocatori-1;i++){
             g[i]=g[i+1];
         }
+    }
+    public static void AssegnaCapitano(Giocatore[]g, int nGiocatore){
+
     }
 }
