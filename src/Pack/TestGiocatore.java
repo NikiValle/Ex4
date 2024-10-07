@@ -77,7 +77,12 @@ public class TestGiocatore {
                         g[giocatoreInModifica].setGol(in.nextInt());
                     }
                     break;
-
+                case 4:
+                    System.out.println("Inserisci il nome del giocatore da cancellare");
+                    modGiocatore=in.next();
+                    giocatoreInModifica=TrovaGiocatore(g, nGiocatori, modGiocatore);
+                    CancellaGiocatore(giocatoreInModifica, g, nGiocatori);
+                    System.out.println("Giocatore cancellato");
             }
         }while(active);
     }
@@ -100,5 +105,10 @@ public class TestGiocatore {
             break;
         }
         return -1;
+    }
+    public static void CancellaGiocatore(int giocatoreDaCancellare, Giocatore[]g, int nGiocatori){
+        for(int i=giocatoreDaCancellare;i<nGiocatori-1;i++){
+            g[i]=g[i+1];
+        }
     }
 }
