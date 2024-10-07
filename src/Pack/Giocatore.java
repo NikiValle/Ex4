@@ -22,13 +22,13 @@ public class Giocatore{
         gol=Gol;
     }
     public Giocatore(String Nome){
-        nome=Nome;
+        setNome(Nome);
     }
     public Giocatore(boolean Capitano){
-        capitano=Capitano;
+        setCapitano(Capitano);
     }
     public Giocatore( int Gol){
-        gol=Gol;
+        setGol(Gol);
     }
     public void setNome(String Nome){
         nome=Nome;
