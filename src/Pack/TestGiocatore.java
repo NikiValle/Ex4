@@ -8,7 +8,9 @@ public class TestGiocatore {
         int nGiocatori =0;
         String nome;
         String capitano;
-        boolean isCapitano;
+        boolean presenzaCapitano = false;
+        boolean isCapitano =false;
+        boolean error;
         int gol;
         Giocatore[] g = new Giocatore[1000];
         do{
@@ -25,11 +27,18 @@ public class TestGiocatore {
                 case 1:
                     System.out.println("Inserisci i dati del nuovo giocatore in quest'ordine: Nome, capitano(si/no), numero di gol");
                     nome=in.next();
-                    capitano=in.next();
-                    if(capitano.equalsIgnoreCase("no"))
-                        isCapitano=false;
-                    else
-                        isCapitano=true;
+                    do {
+                        error=false;
+                        capitano = in.next();
+                        if (capitano.equalsIgnoreCase("no"))
+                            isCapitano = false;
+                        else if(capitano.equalsIgnoreCase("si")||capitano.equalsIgnoreCase("sì")&&presenzaCapitano==true){
+                            System.out.println("É già presente un capitano, scrivi no");
+                            error=true;
+                        }
+                        else
+                            isCapitano=true;
+                    }while(error);
                     gol=in.nextInt();
                     CreaGiocatore(nome, isCapitano, gol, g, nGiocatori);
                     nGiocatori++;
@@ -39,6 +48,7 @@ public class TestGiocatore {
                         System.out.println(VisualizzaGiocatori(g, i));
                     }
                     break;
+                case 3:
 
             }
         }while(active);
