@@ -16,6 +16,7 @@ public class TestGiocatore {
         boolean isCapitano =false;
         boolean error;
         int gol;
+        int num;
         Random r= new Random(32198);
         Giocatore[] g = new Giocatore[1000];
         do{
@@ -100,13 +101,14 @@ public class TestGiocatore {
                     }
                     break;
                 case 7:
-                    r=r.nextInt(nGiocatori)
+                    num=r.nextInt(nGiocatori);
                     if(presenzaCapitano) {
                         System.out.println("É già presente un capitano");
                         break;
                     }
                     else
-                        AssegnaCapitano(g, nGiocatori);
+                        AssegnaCapitano(g, nGiocatori, num);
+                    break;
             }
         }while(active);
     }
@@ -135,7 +137,7 @@ public class TestGiocatore {
             g[i]=g[i+1];
         }
     }
-    public static void AssegnaCapitano(Giocatore[]g, int nGiocatore){
-
+    public static void AssegnaCapitano(Giocatore[]g, int nGiocatore, int num){
+        g[num].setCapitano(true);
     }
 }
