@@ -51,7 +51,12 @@ public class TestGiocatore {
                     break;
                 case 2:
                     for(int i=0;i<nGiocatori+1;i++){
-                        System.out.println(VisualizzaGiocatori(g, i));
+                        System.out.println(VisualizzaNomeGiocatore(g, i));
+                        if(VisualizzaCapitanoGiocatore(g,i))
+                            System.out.print(" è capitano");
+                        else
+                            System.out.println(" non è capitano");
+                        System.out.println(" "+VisualizzaGolGiocatore(g, i));
                     }
                     break;
                 case 3:
@@ -84,14 +89,20 @@ public class TestGiocatore {
                     System.out.println("Inserisci il nome del giocatore da cancellare");
                     modGiocatore=in.next();
                     giocatoreInModifica=TrovaGiocatore(g, nGiocatori, modGiocatore);
-                    CancellaGiocatore(giocatoreInModifica, g, nGiocatori);
-                    System.out.println("Giocatore cancellato");
-                    nGiocatori--;
+                    if(giocatoreInModifica==-1) {
+                        System.out.println("Giocatore non trovato");
+                        break;
+                    }
+                    else {
+                        CancellaGiocatore(giocatoreInModifica, g, nGiocatori);
+                        System.out.println("Giocatore cancellato");
+                        nGiocatori--;
+                    }
                     break;
                 case 5:
                     for(int i=0;i<nGiocatori;i++){
                         if(g[i].getGol()>5)
-                            System.out.println(VisualizzaGiocatori(g, i));
+                            System.out.println(VisualizzaNomeGiocatore(g, i));
                     }
                     break;
                 case 6:
@@ -115,14 +126,14 @@ public class TestGiocatore {
     public static void CreaGiocatore(String Nome, boolean Capitano, int Gol, Giocatore[] g, int nGiocatori){
         g[nGiocatori] = new Giocatore(Nome, Capitano, Gol);
     }
-    public static String VisualizzaGiocatori(Giocatore[] g, int i){
-        String c;
-        if(g[i].getCapitano())
-            c="è capitano";
-        else
-            c="non è capitano";
-        String output = (g[i].getNome()+", "+c+", "+g[i].getGol());
-        return output;
+    public static String VisualizzaNomeGiocatore(Giocatore[] g, int i){
+        return g[i].getNome();
+    }
+    public static boolean VisualizzaCapitanoGiocatore(Giocatore[] g, int i){
+        return g[i].getCapitano();
+    }
+    public static int VisualizzaGolGiocatore(Giocatore[] g, int i){
+        return g[i].getGol();
     }
     public static int TrovaGiocatore(Giocatore[]g, int nGiocatori, String nome){
         for(int i=0;i<nGiocatori+1;i++){
